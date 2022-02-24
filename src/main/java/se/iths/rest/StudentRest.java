@@ -31,11 +31,11 @@ public class StudentRest {
         return Response.ok(foundStudents).build();
     }
 
-    @Path("id")
-    @PUT
-    public Response updateLastName(Student student) {
-        studentService.updateLastName(student);
-        return Response.ok(student).build();
+    @Path("updatelastname/{id}")
+    @PATCH
+    public Response updateLastName(@PathParam("id") Long id, @QueryParam("lastName") String lastName) {
+        Student updateLastName = studentService.updateLastName(id, lastName);
+        return Response.ok(updateLastName).build();
     }
 
     @Path("{id}")

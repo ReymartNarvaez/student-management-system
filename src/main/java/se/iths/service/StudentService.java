@@ -21,8 +21,10 @@ public class StudentService {
         return entityManager.createQuery("SELECT s FROM Student s", Student.class).getResultList();
     }
 
-    public void updateLastName(Student student) {
-        entityManager.merge(student);
+    public Student updateLastName(Long id, String lastName) {
+        Student foundStudent = entityManager.find(Student.class, id);
+        foundStudent.setLastName(lastName);
+        return foundStudent;
     }
 
     public void deleteStudent(Long id) {
