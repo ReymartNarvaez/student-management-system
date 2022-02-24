@@ -31,6 +31,13 @@ public class StudentRest {
         return Response.ok(foundStudents).build();
     }
 
+    @Path("getstudent")
+    @GET
+    public Response getStudent(@QueryParam("name") String name) {
+        List<Student> foundStudents = studentService.findStudent(name);
+        return Response.ok(foundStudents).build();
+    }
+
     @Path("updatelastname/{id}")
     @PATCH
     public Response updateLastName(@PathParam("id") Long id, @QueryParam("lastName") String lastName) {
