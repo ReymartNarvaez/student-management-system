@@ -44,10 +44,9 @@ public class TeacherRest {
     @Path("getTeacher")
     @GET
     public Response getTeacher(@QueryParam("name") String name) {
-        List<Teacher> foundTeachers = null;
-        try {
-            foundTeachers = teacherService.findTeacher(name);
-        } catch (Exception e) {
+        List<Teacher> foundTeachers = teacherService.findTeacher(name);
+
+        if (foundTeachers.isEmpty()) {
             throw new NotFoundException("Teacher Does Not Exist");
         }
         return Response.ok(foundTeachers).build();

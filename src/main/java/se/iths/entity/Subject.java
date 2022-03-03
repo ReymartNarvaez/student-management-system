@@ -13,7 +13,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
-    private String Subject;
+    private String subject;
 
     public Long getId() {
         return id;
@@ -24,10 +24,10 @@ public class Subject {
     }
 
     public String getSubject() {
-        return Subject;
+        return subject;
     }
 
     public void setSubject(String subject) {
-        Subject = subject;
+        subject = subject;
     }
 }
