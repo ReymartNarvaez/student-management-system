@@ -1,7 +1,14 @@
 package se.iths.entity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class Teacher {
@@ -16,15 +23,13 @@ public class Teacher {
     @NotEmpty
     private String email;
     private Long phoneNumber;
+    @OneToMany(mappedBy = "teacher", cascade = ALL)
+    private List<Subject> subjects = new ArrayList<>();
 
-    public Teacher(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
 
-    public Teacher() {
-
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
+        subject.setTeacher(this);
     }
 
     public Long getId() {
@@ -65,5 +70,13 @@ public class Teacher {
 
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 }

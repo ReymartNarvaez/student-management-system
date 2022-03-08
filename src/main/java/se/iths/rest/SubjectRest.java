@@ -1,6 +1,7 @@
 package se.iths.rest;
 
 import se.iths.entity.Subject;
+import se.iths.exception.BadRequestException;
 import se.iths.exception.NotFoundException;
 import se.iths.service.SubjectService;
 
@@ -18,11 +19,32 @@ public class SubjectRest {
     @Inject
     SubjectService subjectService;
 
-    @Path("new")
+    @Path("newSubject")
     @POST
     public Response createSubject(Subject subject) {
-        subjectService.createSubject(subject);
+        try {
+            subjectService.createSubject(subject);
+        } catch (Exception e) {
+            throw new BadRequestException("WrongInput");
+        }
+
         return Response.ok(subject).build();
+    }
+
+    @Path("addStudent/{studentId}/{subjectId}")
+    @PUT
+    public Response addStudent(@PathParam("studentId") Long studentId, @PathParam("subjectId") Long subjectId) {
+        Subject addStudent = subjectService.addStudent(studentId, subjectId);
+
+        return Response.ok(addStudent).build();
+    }
+
+    @Path("addTeacher/{teacherId}/{subjectId}")
+    @PUT
+    public Response addTeacher(@PathParam("teacherId") Long teacherId, @PathParam("subjectId") Long subjectId) {
+        Subject addTeacher = subjectService.addTeacher(teacherId, subjectId);
+
+        return Response.ok(addTeacher).build();
     }
 
     @Path("getAllSubjects")
