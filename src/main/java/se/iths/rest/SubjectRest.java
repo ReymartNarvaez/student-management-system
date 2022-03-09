@@ -34,7 +34,13 @@ public class SubjectRest {
     @Path("addStudent/{studentId}/{subjectId}")
     @PUT
     public Response addStudent(@PathParam("studentId") Long studentId, @PathParam("subjectId") Long subjectId) {
-        Subject addStudent = subjectService.addStudent(studentId, subjectId);
+
+        Subject addStudent = null;
+        try {
+            addStudent = subjectService.addStudent(studentId, subjectId);
+        } catch (Exception e) {
+            throw new BadRequestException("Add Student Failed, Check Id Input");
+        }
 
         return Response.ok(addStudent).build();
     }
@@ -42,7 +48,12 @@ public class SubjectRest {
     @Path("addTeacher/{teacherId}/{subjectId}")
     @PUT
     public Response addTeacher(@PathParam("teacherId") Long teacherId, @PathParam("subjectId") Long subjectId) {
-        Subject addTeacher = subjectService.addTeacher(teacherId, subjectId);
+        Subject addTeacher = null;
+        try {
+            addTeacher = subjectService.addTeacher(teacherId, subjectId);
+        } catch (Exception e) {
+            throw new BadRequestException("Add Student Failed, Check Id Input");
+        }
 
         return Response.ok(addTeacher).build();
     }
@@ -67,6 +78,18 @@ public class SubjectRest {
             throw new NotFoundException("No Subjects Found");
         }
         return Response.ok(foundSubject).build();
+    }
+
+    @Path("updateSubjectName/{id}")
+    @PATCH
+    public Response updateLastName(@PathParam("id") Long id, @QueryParam("lastName") String name) {
+        Subject updateName = null;
+        try {
+            updateName = subjectService.updateSubject(id, name);
+        } catch (Exception e) {
+            throw new BadRequestException("Subject Id Does Not Exist");
+        }
+        return Response.ok(updateName).build();
     }
 
     @Path("{id}")

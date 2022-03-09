@@ -6,9 +6,6 @@ import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static javax.persistence.CascadeType.ALL;
-
 @Entity
 public class Student {
 
