@@ -42,7 +42,7 @@ Endpoint : /student-management-system/api/v1/subject/newSubject
 
 Endpoint : /student-management-system/api/v1/teacher/newTeacher
 
-*Create Student, Teacher and Subject Before Using the 3rd and 4th Step
+*Create Student, Teacher and Subject Before Using Next Coming Steps
 
 3.Add Student to Subject
 
@@ -51,4 +51,12 @@ Endpoint: /student-management-system/api/v1/subject/addStudent/{studentId}/{subj
 4.Add Teacher to Subject
 
 Endpoint: /student-management-system/api/v1/subject/addTeacher/{teacherId}/{subjectId}
+
+5.Get All Subjects
+
+Endpoint: http://narvaez:8080/student-management-system/api/v1/subject/getAllSubjects
+
+6.Get All Teacher
+
+Endpoint: http://narvaez:8080/student-management-system/api/v1/teacher/getAllTeachers
 
