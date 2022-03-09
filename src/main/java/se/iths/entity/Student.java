@@ -1,5 +1,6 @@
 package se.iths.entity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Student {
     @NotEmpty
     private String email;
     private String phoneNumber;
-    @ManyToMany(cascade = ALL, mappedBy = "students")
+    @ManyToMany(mappedBy = "students")
     private List<Subject> subjects = new ArrayList<>();
 
     public Long getId() {
@@ -69,6 +70,7 @@ public class Student {
         return this;
     }
 
+    @JsonbTransient
     public List<Subject> getSubjects() {
         return subjects;
     }

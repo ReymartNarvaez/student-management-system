@@ -20,7 +20,7 @@ public class Subject {
     @JoinTable(
             name = "SUBJECT_STUDENT",
             joinColumns = @JoinColumn(name = "SUBJECT_ID", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "SUBJECT_ID", referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "id"))
     private List<Student> students = new ArrayList<>();
 
     public Long getId() {
